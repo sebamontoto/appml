@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -29,6 +30,8 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
         baseLayoutView = findViewById(R.id.baseLayoutView);
         baseLayoutError = findViewById(R.id.baseLayoutError);
         baseLayoutLoading = findViewById(R.id.baseLayoutLoading);
+
+        baseLayoutLoading.addView(LayoutInflater.from(this).inflate(R.layout.base_loading_view, null));
 
         viewModel = createViewModel();
         viewModel.viewStateLiveData.observe(this, new Observer<ViewState>() {

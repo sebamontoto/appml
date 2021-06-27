@@ -1,20 +1,14 @@
 package com.example.appml.home;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.appml.R;
 import com.example.appml.common.BaseActivity;
 import com.example.appml.databinding.ActivityHomeBinding;
 import com.example.appml.detail.DetailActivity;
@@ -25,6 +19,7 @@ import java.util.List;
 public class HomeActivity extends BaseActivity<HomeViewModel> {
 
     private ActivityHomeBinding binding;
+    private AdapterListProducts adapterListProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +28,16 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
         // Para poblar la pantalla de entrada
         getViewModel().fetchProducts("4k");
 
-        configView();
-    }
-
-    private void configView() {
-
-        binding.recyclerProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        binding.recyclerProducts.setHasFixedSize(true);
-
-        AdapterListProducts adapterListProducts = new AdapterListProducts(item -> {
+        adapterListProducts = new AdapterListProducts(item -> {
             Intent intent = new Intent(this, DetailActivity.class);
-            intent.putExtra("product", item);
+            intent.putExtra(DetailActivity.KEY_PRODUCT, item);
             startActivity(intent);
         });
-        binding.recyclerProducts.setAdapter(adapterListProducts);
 
-        getViewModel().getSearchState().observe(this, new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> products) {
-                adapterListProducts.setListData(products);
-            }
-        });
+        initRecyclerView();
+
+
+        observeSearchState();
 
         binding.editTextSearch.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -61,6 +45,23 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
                 return true;
             }
             return  false;
+        });
+    }
+
+    private void initRecyclerView() {
+
+        binding.recyclerProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.recyclerProducts.setHasFixedSize(true);
+        binding.recyclerProducts.setAdapter(adapterListProducts);
+    }
+
+    private void observeSearchState() {
+
+        getViewModel().getSearchState().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                adapterListProducts.setListData(products);
+            }
         });
     }
 

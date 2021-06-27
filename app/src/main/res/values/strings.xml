@@ -2,4 +2,12 @@
     <string name="app_name">AppML</string>
     <string name="title">Titulo</string>
     <string name="search_in_mercado_libre">Buscar en Mercado Libre</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="usado">Usado</string>
+    <string name="signo_pesos">"$"</string>
+    <string name="avaliable_quantity">Cantidad disponible: </string>
+    <string name="sold">Vendidos </string>
+    <string name="sold_quantity">Cantidad vendida: </string>
+    <string name="pleca">|</string>
+
 </resources>

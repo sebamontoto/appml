@@ -14,4 +14,7 @@ public interface DetailService {
 
     @GET("items/{itemId}")
     Observable <Response<ProductDetail>> getItemDetails(@Path("itemId") @NonNull final String itemId);
+
+    /*@GET("items/{itemId}/description")
+    Observable <*/
 }

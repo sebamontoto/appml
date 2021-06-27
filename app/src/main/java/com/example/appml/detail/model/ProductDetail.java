@@ -13,6 +13,7 @@ public class ProductDetail {
     private float basePrice;
     private float originalPrice;
     private int availableQuantity;
+    private int soldQuantity;
     private String condition;
     private String thumbnail;
     private List<Pictures> pictures;
@@ -50,6 +51,10 @@ public class ProductDetail {
 
     public String getCondition() {
         return condition;
+    }
+
+    public int getSoldQuantity() {
+        return soldQuantity;
     }
 
     public String getThumbnail() {
