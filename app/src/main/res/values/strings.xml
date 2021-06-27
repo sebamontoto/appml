@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AppML</string>
+    <string name="title">Titulo</string>
+    <string name="search_in_mercado_libre">Buscar en Mercado Libre</string>
 </resources>

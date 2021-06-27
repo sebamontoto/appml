@@ -30,6 +30,9 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Para poblar la pantalla de entrada
+        getViewModel().fetchProducts("4k");
+
         configView();
     }
 
@@ -37,14 +40,13 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
 
         binding.recyclerProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.recyclerProducts.setHasFixedSize(true);
+
         AdapterListProducts adapterListProducts = new AdapterListProducts(item -> {
             Intent intent = new Intent(this, DetailActivity.class);
             intent.putExtra("product", item);
             startActivity(intent);
         });
         binding.recyclerProducts.setAdapter(adapterListProducts);
-
-        //getViewModel().fetchProducts("telefono");
 
         getViewModel().getSearchState().observe(this, new Observer<List<Product>>() {
             @Override
