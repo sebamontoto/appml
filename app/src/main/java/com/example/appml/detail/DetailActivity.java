@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.example.appml.R;
 import com.example.appml.common.BaseActivity;
 import com.example.appml.databinding.ActivityDetailBinding;
 import com.example.appml.detail.model.ProductDetail;
@@ -15,6 +16,7 @@ import com.example.appml.home.model.Product;
 public class DetailActivity extends BaseActivity<DetailViewModel> {
 
     private ActivityDetailBinding binding;
+    public static final String KEY_PRODUCT = "product";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +26,7 @@ public class DetailActivity extends BaseActivity<DetailViewModel> {
     }
 
     private void parseBack() {
-        //Revisar esto
-        Object object = getIntent().getSerializableExtra("product");
-        Product product = (Product) object;
+        Product product = (Product) getIntent().getSerializableExtra(KEY_PRODUCT);
 
         getViewModel().fetchItemDetails(product.getId());
 
@@ -34,15 +34,17 @@ public class DetailActivity extends BaseActivity<DetailViewModel> {
             @Override
             public void onChanged(ProductDetail productDetail) {
 
-                //Revisar
-                binding.textCondition.setText(productDetail.getCondition().equals("new") ? "Nuevo" : "Usado");
+                binding.textCondition.setText(productDetail.getCondition().equals("new")
+                        ? getString(R.string.nuevo) : getString(R.string.usado));
+                binding.textSoldQuantity.setText(productDetail.getSoldQuantity() + " " + getString(R.string.sold));
                 binding.textTitle.setText(productDetail.getTitle());
-                binding.textPrice.setText("$" + productDetail.getPrice());
+                binding.textPrice.setText(getString(R.string.signo_pesos) + productDetail.getPrice());
                 binding.textWarranty.setText(productDetail.getWarranty());
-                binding.textQuantity.setText("Cantidad disponible: " + productDetail.getAvailableQuantity());
+                binding.textQuantity.setText(getString(R.string.avaliable_quantity) + productDetail.getAvailableQuantity());
                 Glide.with(DetailActivity.this)
                         .load(productDetail.getThumbnail())
                         .into(binding.imageView);
+                binding.textDescription.setText("Aqui va la descripcion en texto plano del producto");
             }
         });
     }

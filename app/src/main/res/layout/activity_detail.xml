@@ -10,14 +10,38 @@
 
     <TextView
         android:id="@+id/textCondition"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_short"
         android:textSize="@dimen/text_short"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Nuevo" />
+
+    <TextView
+        android:id="@+id/textPleca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_short"
+        android:layout_marginTop="@dimen/margin_short"
+        android:layout_marginEnd="@dimen/margin_short"
+        android:text="@string/pleca"
+        android:textSize="@dimen/text_short"
+        app:layout_constraintStart_toEndOf="@id/textCondition"
+        app:layout_constraintEnd_toStartOf="@id/textSoldQuantity"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="|" />
+
+    <TextView
+        android:id="@+id/textSoldQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_short"
+        android:layout_marginStart="@dimen/margin_short"
+        android:textSize="@dimen/text_short"
+        app:layout_constraintStart_toEndOf="@id/textPleca"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Cantidad vendida:" />
 
     <TextView
         android:id="@+id/textTitle"
