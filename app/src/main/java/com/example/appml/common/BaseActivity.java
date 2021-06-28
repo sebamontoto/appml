@@ -32,6 +32,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
         baseLayoutLoading = findViewById(R.id.baseLayoutLoading);
 
         baseLayoutLoading.addView(LayoutInflater.from(this).inflate(R.layout.base_loading_view, null));
+        baseLayoutError.addView(LayoutInflater.from(this).inflate(R.layout.base_error_view, null));
 
         viewModel = createViewModel();
         viewModel.viewStateLiveData.observe(this, new Observer<ViewState>() {
