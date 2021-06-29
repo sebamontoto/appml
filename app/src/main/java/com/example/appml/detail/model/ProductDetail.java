@@ -1,6 +1,7 @@
 package com.example.appml.detail.model;
 
 import com.example.appml.home.model.Shipping;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class ProductDetail {
     private boolean acceptsMercadoPago;
     private Shipping shipping;
     private String warranty;
+
+    @SerializedName("plain_text") private String description;
 
     public String getId() {
         return id;
@@ -75,5 +78,9 @@ public class ProductDetail {
 
     public List<Pictures> getPictures() {
         return pictures;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

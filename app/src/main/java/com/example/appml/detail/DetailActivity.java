@@ -13,6 +13,11 @@ import com.example.appml.databinding.ActivityDetailBinding;
 import com.example.appml.detail.model.ProductDetail;
 import com.example.appml.home.model.Product;
 
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DetailActivity extends BaseActivity<DetailViewModel> {
 
     private ActivityDetailBinding binding;
@@ -23,6 +28,10 @@ public class DetailActivity extends BaseActivity<DetailViewModel> {
         super.onCreate(savedInstanceState);
 
         parseBack();
+    }
+
+    @Override
+    protected void retry() {
     }
 
     private void parseBack() {
@@ -41,10 +50,28 @@ public class DetailActivity extends BaseActivity<DetailViewModel> {
                 binding.textPrice.setText(getString(R.string.signo_pesos) + productDetail.getPrice());
                 binding.textWarranty.setText(productDetail.getWarranty());
                 binding.textQuantity.setText(getString(R.string.avaliable_quantity) + productDetail.getAvailableQuantity());
-                Glide.with(DetailActivity.this)
-                        .load(productDetail.getThumbnail())
-                        .into(binding.imageView);
-                binding.textDescription.setText("Aqui va la descripcion en texto plano del producto");
+                /*Glide.with(DetailActivity.this)
+                        .load(productDetail.getPictures().get(1).getUrl())
+                        .into(binding.imageView);*/
+
+                binding.carousel.registerLifecycle(getLifecycle());
+
+                List<CarouselItem> list = new ArrayList<>();
+
+                productDetail.getPictures().forEach(picture -> list.add(new CarouselItem(picture.getUrl())));
+
+                binding.carousel.setData(list);
+            }
+        });
+
+
+
+        getViewModel().fetchItemDescription(product.getId());
+
+        getViewModel().getProductDescription().observe(this, new Observer<ProductDetail>() {
+            @Override
+            public void onChanged(ProductDetail productDetail) {
+                binding.textDescription.setText("Description: " + productDetail.getDescription());
             }
         });
     }

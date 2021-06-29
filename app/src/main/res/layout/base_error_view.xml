@@ -8,22 +8,13 @@
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:text="@string/server_disconnect"
         android:textSize="@dimen/text_large"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageServerDisconnet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@drawable/image_status_offline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textTitle" />
 
     <Button
         android:id="@+id/buttonRetry"
@@ -33,6 +24,6 @@
         android:text="@string/retry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageServerDisconnet" />
+        app:layout_constraintTop_toBottomOf="@id/textTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

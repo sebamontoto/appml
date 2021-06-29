@@ -36,7 +36,6 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
 
         initRecyclerView();
 
-
         observeSearchState();
 
         binding.editTextSearch.setOnEditorActionListener((v, actionId, event) -> {
@@ -46,6 +45,12 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
             }
             return  false;
         });
+
+    }
+
+    @Override
+    protected void retry() {
+        getViewModel().retry();
     }
 
     private void initRecyclerView() {
@@ -56,7 +61,6 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
     }
 
     private void observeSearchState() {
-
         getViewModel().getSearchState().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
