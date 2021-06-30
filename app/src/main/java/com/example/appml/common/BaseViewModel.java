@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 public class BaseViewModel extends ViewModel {
 
-    private MutableLiveData<ViewState> viewState; // escritura y lectura
-    public LiveData<ViewState> viewStateLiveData; // de solo lectura
+    private final MutableLiveData<ViewState> viewState;
+    public LiveData<ViewState> viewStateLiveData;
 
     public BaseViewModel(){
         viewState = new MutableLiveData<>();

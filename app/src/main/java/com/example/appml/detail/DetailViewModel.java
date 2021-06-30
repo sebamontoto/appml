@@ -89,7 +89,7 @@ public class DetailViewModel extends BaseViewModel {
                     @Override
                     public void onError(Throwable e) {
                         Log.i(TAG, "onError: " + e);
-                        setViewAsError("Revisa tu conexión a internet");
+                        setViewAsError("Revisa tu conexión a Internet");
                     }
 
                     @Override
@@ -99,6 +99,7 @@ public class DetailViewModel extends BaseViewModel {
                 });
     }
 
+    @Nullable
     public void fetchItemDescription(String productId){
         detailService.getItemDescription(productId)
                 .subscribeOn(Schedulers.io())
@@ -106,10 +107,14 @@ public class DetailViewModel extends BaseViewModel {
                 .subscribe(new DisposableObserver<Response<ProductDescription>>() {
                     @Override
                     public void onNext(Response<ProductDescription> value) {
-                        Log.i(TAG, "onNextfetchItemDescription: " + value.body());
+                        Log.i(TAG, "onNext: " + value.body());
 
                         productDescription = value.body();
-                        descriptionState.postValue(productDescription);
+
+                        if(productDescription != null){
+                            descriptionState.postValue(productDescription);
+                        }
+
                         setViewAsLayout();
                     }
 
@@ -136,8 +141,4 @@ public class DetailViewModel extends BaseViewModel {
         return productDetail;
     }
 
-    @Nullable
-    public ProductDescription getProductDescription() {
-        return productDescription;
-    }
 }

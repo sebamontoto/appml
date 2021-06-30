@@ -1,7 +1,6 @@
 package com.example.appml.detail.model;
 
 import com.example.appml.home.model.Shipping;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 

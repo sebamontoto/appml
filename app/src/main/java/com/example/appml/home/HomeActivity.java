@@ -4,7 +4,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,8 +27,7 @@ public class HomeActivity extends BaseActivity<HomeViewModel> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        // Para poblar la pantalla de entrada
+        /* populate initial screen */
         if(getViewModel().getProductsList() == null){
             getViewModel().fetchProducts("4k");
         }

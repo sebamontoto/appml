@@ -3,11 +3,11 @@ package com.example.appml.common;
 import androidx.annotation.NonNull;
 
 /**
- * Clase encargada de indicar el estado actual de la aplicación
+ * Class in charge of indicating the current state of the application
  */
 public class ViewState {
 
-    private State state;
+    private final State state;
     private int statusCode;
     private String message;
 
@@ -38,7 +38,6 @@ public class ViewState {
         return new ViewState(state, 0, message);
     }
 
-    // Lista de constantes
     enum State {
         LAYOUT, ERROR, LOADING;
     }

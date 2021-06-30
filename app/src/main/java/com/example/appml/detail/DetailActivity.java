@@ -29,7 +29,7 @@ public class DetailActivity extends BaseActivity<DetailViewModel> {
 
         Product product = (Product) getIntent().getSerializableExtra(KEY_PRODUCT);
 
-        if(getViewModel().getProductDetail() == null && getViewModel().getProductDescription() == null){
+        if(getViewModel().getProductDetail() == null){
             getViewModel().fetchItemDetails(product.getId());
         }
 

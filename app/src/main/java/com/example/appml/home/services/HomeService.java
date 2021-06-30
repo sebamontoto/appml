@@ -10,9 +10,9 @@ import retrofit2.http.Query;
 public interface HomeService {
 
     /**
-     * Método que sirve para obtener una lista de productos que coincida con un elemento a buscar
-     * @param query
-     * @return
+     * Method used to obtain a list of products that matches an item to search
+     * @param query product
+     * @return List of products
      */
     @GET("/sites/MLA/search")
     Observable<Response<SearchResponse>> getProductsFromSearch(@Query("q") String query);

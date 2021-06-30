@@ -43,7 +43,7 @@
                 tools:text="Taladro Percutor 500w Philco Mandril 13mm Meptp116" />
 
             <TextView
-                android:id="@+id/text_price"
+                android:id="@+id/textPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

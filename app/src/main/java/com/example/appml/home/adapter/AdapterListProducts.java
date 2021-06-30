@@ -1,6 +1,5 @@
 package com.example.appml.home.adapter;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +21,8 @@ public class AdapterListProducts extends RecyclerView.Adapter<AdapterListProduct
 
 
     private static final String TAG = "AdapterListProducts";
-    //vars
+
     private List<Product> mProductsArray = new ArrayList<>();
-    private Context mContext;
     private final AdapterListProducts.OnItemClickListener<Product> mItemClickListener;
 
 
@@ -70,7 +68,7 @@ public class AdapterListProducts extends RecyclerView.Adapter<AdapterListProduct
 
             imageThumbnail = itemView.findViewById(R.id.image_product_thumbnail);
             txtTitle = itemView.findViewById(R.id.text_title);
-            txtPrice = itemView.findViewById(R.id.text_price);
+            txtPrice = itemView.findViewById(R.id.textPrice);
             txtFreeShipping = itemView.findViewById(R.id.text_free_shipping);
         }
 

@@ -13,6 +13,9 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Class that generates a service with OkHttp, Gson and Retrofit
+ */
 public final class ServiceBuilder {
 
     private static final int DEFAULT_TIME_OUT = 5;

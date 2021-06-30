@@ -14,8 +14,6 @@ import com.example.appml.home.model.Product;
 import com.example.appml.home.model.SearchResponse;
 import com.example.appml.home.services.HomeService;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import io.reactivex.observers.DisposableObserver;
@@ -73,7 +71,6 @@ public class HomeViewModel extends BaseViewModel {
                         if(value.isSuccessful()){
                             productsList = ((SearchResponse) value.body()).getResults();
                             searchState.postValue(productsList);
-                            //searchState.postValue(((SearchResponse) value.body()).getResults());
                             setViewAsLayout();
                             command = null;
                         } else {

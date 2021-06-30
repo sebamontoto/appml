@@ -13,13 +13,12 @@ import android.widget.TextView;
 import com.example.appml.R;
 
 /**
- * Clase abstracta parametrizada encargada de aportar comportamiento a las clases heredadas
- *
- * @param <T> tipo de dato que hereda de BaseViewModel
+ * Parameterized abstract class responsible for providing behavior to inherited classes
+ * @param <T> data type inheriting from BaseViewModel
  */
 public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatActivity {
 
-    private T viewModel; // en T recibe el viewmodel especifico de cada activity?
+    private T viewModel;
     private ViewGroup baseLayoutView;
     private ViewGroup baseLayoutError;
     private ViewGroup baseLayoutLoading;
@@ -74,7 +73,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
 
         baseLayoutView.addView(getLayoutView());
 
-
+        buttonRetry.setOnClickListener(l -> retry());
     }
 
     protected abstract void retry();
