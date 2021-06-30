@@ -23,6 +23,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     private ViewGroup baseLayoutView;
     private ViewGroup baseLayoutError;
     private ViewGroup baseLayoutLoading;
+
     private Button buttonRetry;
     private TextView textError;
 
@@ -34,7 +35,6 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
         baseLayoutView = findViewById(R.id.baseLayoutView);
         baseLayoutError = findViewById(R.id.baseLayoutError);
         baseLayoutLoading = findViewById(R.id.baseLayoutLoading);
-
 
         View errorView = LayoutInflater.from(this).inflate(R.layout.base_error_view, null);
         buttonRetry = errorView.findViewById(R.id.buttonRetry);
@@ -74,7 +74,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
 
         baseLayoutView.addView(getLayoutView());
 
-        buttonRetry.setOnClickListener(l -> retry());
+
     }
 
     protected abstract void retry();

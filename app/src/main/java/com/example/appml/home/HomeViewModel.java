@@ -2,6 +2,8 @@ package com.example.appml.home;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -25,7 +27,7 @@ public class HomeViewModel extends BaseViewModel {
     private final String TAG = "HomeViewModel";
 
     private Command command;
-
+    private List<Product> productsList = null;
     private final HomeService homeService;
     private final MutableLiveData<List<Product>> searchState;
 
@@ -45,7 +47,7 @@ public class HomeViewModel extends BaseViewModel {
         command = null;
     }
 
-    public void fetchProducts(String product){
+    public void fetchProducts(@NonNull String product){
         if(command == null){
             command = new Command() {
                 @Override
@@ -54,7 +56,6 @@ public class HomeViewModel extends BaseViewModel {
                 }
             };
         }
-
         command.execute();
     }
 
@@ -70,7 +71,9 @@ public class HomeViewModel extends BaseViewModel {
                         Log.i(TAG, "onNext: " + value.body());
 
                         if(value.isSuccessful()){
-                            searchState.postValue(((SearchResponse) value.body()).getResults());
+                            productsList = ((SearchResponse) value.body()).getResults();
+                            searchState.postValue(productsList);
+                            //searchState.postValue(((SearchResponse) value.body()).getResults());
                             setViewAsLayout();
                             command = null;
                         } else {
@@ -81,7 +84,7 @@ public class HomeViewModel extends BaseViewModel {
                     @Override
                     public void onError(Throwable e) {
                         Log.i(TAG, "onError: " + e);
-                        setViewAsError("Revisá tu conexión a Internet");
+                        setViewAsError("Revisa tu conexión a Internet");
                     }
 
                     @Override
@@ -96,4 +99,10 @@ public class HomeViewModel extends BaseViewModel {
             command.execute();
         }
     }
+
+    @Nullable
+    public List<Product> getProductsList() {
+        return productsList;
+    }
+
 }

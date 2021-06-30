@@ -1,4 +1,4 @@
-package com.example.appml.home;
+package com.example.appml.home.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.appml.BuildConfig;
 import com.example.appml.R;
 import com.example.appml.home.model.Product;
 
@@ -83,7 +82,7 @@ public class AdapterListProducts extends RecyclerView.Adapter<AdapterListProduct
 
             txtTitle.setText(product.getTitle());
             txtPrice.setText("" + product.getPrice());
-            txtFreeShipping.setText((product.getShipping().isFreeShipping() ? "Envio gratis" : ""));
+            txtFreeShipping.setText((product.getShipping().isFreeShipping() ? "Envío gratis" : ""));
 
             itemView.setOnClickListener(v -> itemClickListener.onItemClick(product));
         }
