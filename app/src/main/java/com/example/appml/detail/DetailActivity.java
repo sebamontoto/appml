@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
 import com.example.appml.R;
 import com.example.appml.common.BaseActivity;
 import com.example.appml.databinding.ActivityDetailBinding;
+import com.example.appml.detail.model.ProductDescription;
 import com.example.appml.detail.model.ProductDetail;
 import com.example.appml.home.model.Product;
 
@@ -27,53 +27,47 @@ public class DetailActivity extends BaseActivity<DetailViewModel> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        parseBack();
-    }
-
-    @Override
-    protected void retry() {
-    }
-
-    private void parseBack() {
         Product product = (Product) getIntent().getSerializableExtra(KEY_PRODUCT);
 
-        getViewModel().fetchItemDetails(product.getId());
+        if(getViewModel().getProductDetail() == null && getViewModel().getProductDescription() == null){
+            getViewModel().fetchItemDetails(product.getId());
+        }
 
-        getViewModel().getProductDetails().observe(this, new Observer<ProductDetail>() {
+        getViewModel().getDetailsState().observe(this, new Observer<ProductDetail>() {
             @Override
             public void onChanged(ProductDetail productDetail) {
 
                 binding.textCondition.setText(productDetail.getCondition().equals("new")
                         ? getString(R.string.nuevo) : getString(R.string.usado));
-                binding.textSoldQuantity.setText(productDetail.getSoldQuantity() + " " + getString(R.string.sold));
+                binding.textSoldQuantity.setText(getString(R.string.sold, productDetail.getSoldQuantity()));
                 binding.textTitle.setText(productDetail.getTitle());
-                binding.textPrice.setText(getString(R.string.signo_pesos) + productDetail.getPrice());
+                binding.textPrice.setText(getString(R.string.signo_pesos, productDetail.getPrice()));
+
+                binding.textShipping.setVisibility((productDetail.getShipping().isFreeShipping() ? View.VISIBLE : View.GONE));
+                binding.textShipping.setText((productDetail.getShipping().isFreeShipping() ? getString(R.string.free_shipping) : ""));
+
                 binding.textWarranty.setText(productDetail.getWarranty());
-                binding.textQuantity.setText(getString(R.string.avaliable_quantity) + productDetail.getAvailableQuantity());
-                /*Glide.with(DetailActivity.this)
-                        .load(productDetail.getPictures().get(1).getUrl())
-                        .into(binding.imageView);*/
+                binding.textQuantity.setText(getString(R.string.avaliable_quantity, productDetail.getAvailableQuantity()));
 
                 binding.carousel.registerLifecycle(getLifecycle());
 
                 List<CarouselItem> list = new ArrayList<>();
-
                 productDetail.getPictures().forEach(picture -> list.add(new CarouselItem(picture.getUrl())));
-
                 binding.carousel.setData(list);
             }
         });
 
-
-
-        getViewModel().fetchItemDescription(product.getId());
-
-        getViewModel().getProductDescription().observe(this, new Observer<ProductDetail>() {
+        getViewModel().getDescriptionState().observe(this, new Observer<ProductDescription>() {
             @Override
-            public void onChanged(ProductDetail productDetail) {
-                binding.textDescription.setText("Description: " + productDetail.getDescription());
+            public void onChanged(ProductDescription productDescription) {
+                binding.textDescription.setText(productDescription.getDescription());
             }
         });
+    }
+
+    @Override
+    protected void retry() {
+        getViewModel().retry();
     }
 
     @Override

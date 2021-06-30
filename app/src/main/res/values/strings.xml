@@ -4,12 +4,14 @@
     <string name="search_in_mercado_libre">Buscar en Mercado Libre</string>
     <string name="nuevo">Nuevo</string>
     <string name="usado">Usado</string>
-    <string name="signo_pesos">"$"</string>
-    <string name="avaliable_quantity">Cantidad disponible: </string>
-    <string name="sold">Vendidos </string>
-    <string name="sold_quantity">Cantidad vendida: </string>
+    <string name="signo_pesos">"$ %1$.2f"</string>
+    <string name="avaliable_quantity">%1$d Disponibles</string>
+    <string name="sold">%1$d Vendidos </string>
+    <string name="sold_quantity">Cantidad vendida: %1$d</string>
     <string name="pleca">|</string>
     <string name="server_disconnect">Sin conexión al servidor</string>
     <string name="retry">Reintentar</string>
+    <string name="free_shipping">Envío gratis</string>
+    <string name="description">Descripción</string>
 
 </resources>

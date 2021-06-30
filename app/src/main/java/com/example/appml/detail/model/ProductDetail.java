@@ -22,8 +22,6 @@ public class ProductDetail {
     private Shipping shipping;
     private String warranty;
 
-    @SerializedName("plain_text") private String description;
-
     public String getId() {
         return id;
     }
@@ -80,7 +78,4 @@ public class ProductDetail {
         return pictures;
     }
 
-    public String getDescription() {
-        return description;
-    }
 }

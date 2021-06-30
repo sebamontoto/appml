@@ -2,6 +2,7 @@ package com.example.appml.detail.services;
 
 import androidx.annotation.NonNull;
 
+import com.example.appml.detail.model.ProductDescription;
 import com.example.appml.detail.model.ProductDetail;
 
 import io.reactivex.Observable;
@@ -16,5 +17,5 @@ public interface DetailService {
     Observable <Response<ProductDetail>> getItemDetails(@Path("itemId") @NonNull final String itemId);
 
     @GET("items/{itemId}/description")
-    Observable <Response<ProductDetail>> getItemDescription(@Path("itemId") @NonNull final String itemId);
+    Observable <Response<ProductDescription>> getItemDescription(@Path("itemId") @NonNull final String itemId);
 }
