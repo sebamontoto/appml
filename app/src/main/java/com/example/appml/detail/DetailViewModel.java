@@ -22,15 +22,21 @@ public class DetailViewModel extends BaseViewModel {
 
     DetailService detailService;
     private MutableLiveData<ProductDetail> productDetails;
+    private MutableLiveData<ProductDetail> productDescription;
 
     public DetailViewModel(){
         setViewAsLayout();
         detailService = ServiceBuilder.createService(DetailService.class);
         productDetails = new MutableLiveData<>();
+        productDescription = new MutableLiveData<>();
     }
 
     public LiveData<ProductDetail> getProductDetails(){
         return productDetails;
+    }
+
+    public LiveData<ProductDetail> getProductDescription(){
+        return productDescription;
     }
 
     public void fetchItemDetails(String productId){
@@ -43,9 +49,9 @@ public class DetailViewModel extends BaseViewModel {
                     @Override
                     public void onNext(Response<ProductDetail> value) {
                         Log.i(TAG, "onNext: " + value.body());
-                        productDetails.postValue(((ProductDetail) value.body()));
+                        productDetails.postValue(value.body());
 
-                        setViewAsLayout();
+                        fetchItemDescription(productId);
                     }
 
                     @Override
@@ -58,6 +64,29 @@ public class DetailViewModel extends BaseViewModel {
                         Log.i(TAG, "onComplete: " );
                     }
                 });
+    }
 
+    public void fetchItemDescription(String productId){
+        detailService.getItemDescription(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new DisposableObserver<Response<ProductDetail>>() {
+                    @Override
+                    public void onNext(Response<ProductDetail> value) {
+                        Log.i(TAG, "onNextfetchItemDescription: " + value.body());
+                        productDescription.postValue(value.body());
+                        setViewAsLayout();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i(TAG, "onError: " + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete: ");
+                    }
+                });
     }
 }

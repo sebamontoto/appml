@@ -42,10 +42,6 @@
                 android:textSize="16sp"
                 tools:text="Taladro Percutor 500w Philco Mandril 13mm Meptp116" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="9dp" />
-
             <TextView
                 android:id="@+id/text_price"
                 android:layout_width="match_parent"
@@ -53,6 +49,15 @@
                 android:ellipsize="end"
                 android:textSize="@dimen/text_large"
                 tools:text="$5500" />
+
+            <TextView
+                android:id="@+id/text_free_shipping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/green"
+                android:textSize="@dimen/text_short"
+                tools:text="Envio Grátis" />
 
         </LinearLayout>
 

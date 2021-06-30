@@ -63,6 +63,7 @@ public class AdapterListProducts extends RecyclerView.Adapter<AdapterListProduct
 
         public TextView txtTitle;
         public TextView txtPrice;
+        public TextView txtFreeShipping;
         public ImageView imageThumbnail;
 
         public ViewHolder(@NonNull View itemView) {
@@ -71,6 +72,7 @@ public class AdapterListProducts extends RecyclerView.Adapter<AdapterListProduct
             imageThumbnail = itemView.findViewById(R.id.image_product_thumbnail);
             txtTitle = itemView.findViewById(R.id.text_title);
             txtPrice = itemView.findViewById(R.id.text_price);
+            txtFreeShipping = itemView.findViewById(R.id.text_free_shipping);
         }
 
         public void bind(final Product product, final AdapterListProducts.OnItemClickListener itemClickListener) {
@@ -81,6 +83,7 @@ public class AdapterListProducts extends RecyclerView.Adapter<AdapterListProduct
 
             txtTitle.setText(product.getTitle());
             txtPrice.setText("" + product.getPrice());
+            txtFreeShipping.setText((product.getShipping().isFreeShipping() ? "Envio gratis" : ""));
 
             itemView.setOnClickListener(v -> itemClickListener.onItemClick(product));
         }

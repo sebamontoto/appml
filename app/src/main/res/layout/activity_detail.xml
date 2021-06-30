@@ -1,133 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="@dimen/padding_medium"
-    android:paddingEnd="@dimen/padding_medium"
-    tools:context=".detail.DetailActivity">
+    android:layout_width="match_parent">
 
-    <TextView
-        android:id="@+id/textCondition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_short"
-        android:textSize="@dimen/text_short"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Nuevo" />
-
-    <TextView
-        android:id="@+id/textPleca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_short"
-        android:layout_marginTop="@dimen/margin_short"
-        android:layout_marginEnd="@dimen/margin_short"
-        android:text="@string/pleca"
-        android:textSize="@dimen/text_short"
-        app:layout_constraintStart_toEndOf="@id/textCondition"
-        app:layout_constraintEnd_toStartOf="@id/textSoldQuantity"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="|" />
-
-    <TextView
-        android:id="@+id/textSoldQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_short"
-        android:layout_marginStart="@dimen/margin_short"
-        android:textSize="@dimen/text_short"
-        app:layout_constraintStart_toEndOf="@id/textPleca"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Cantidad vendida:" />
-
-    <TextView
-        android:id="@+id/textTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textSize="@dimen/text_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textCondition"
-        tools:text="Notebook del G550" />
+        android:paddingStart="@dimen/padding_medium"
+        android:paddingEnd="@dimen/padding_medium"
+        tools:context=".detail.DetailActivity">
 
-    <Space
-        android:id="@+id/spaceOne"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textTitle" />
+        <TextView
+            android:id="@+id/textCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_short"
+            android:textSize="@dimen/text_short"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nuevo" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spaceOne"
-        tools:background="@drawable/image_notebook" />
+        <TextView
+            android:id="@+id/textPleca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_short"
+            android:layout_marginTop="@dimen/margin_short"
+            android:layout_marginEnd="@dimen/margin_short"
+            android:text="@string/pleca"
+            android:textSize="@dimen/text_short"
+            app:layout_constraintEnd_toStartOf="@id/textSoldQuantity"
+            app:layout_constraintStart_toEndOf="@id/textCondition"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="|" />
 
-    <TextView
-        android:id="@+id/text_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_extra_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
-        tools:text="$85.000" />
+        <TextView
+            android:id="@+id/textSoldQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_short"
+            android:layout_marginTop="@dimen/margin_short"
+            android:textSize="@dimen/text_short"
+            app:layout_constraintStart_toEndOf="@id/textPleca"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Cantidad vendida:" />
 
-    <TextView
-        android:id="@+id/textShipping"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_price"
-        tools:text="Envío gratis" />
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textCondition"
+            tools:text="Notebook del G550" />
 
-    <TextView
-        android:id="@+id/textQuantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textShipping"
-        tools:text="Cantidad: 85 disponibles" />
+        <Space
+            android:id="@+id/spaceOne"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitle" />
 
-    <Space
-        android:id="@+id/spaceTwo"
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textQuantity" />
+        <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+            android:id="@+id/carousel"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spaceOne" />
 
-    <TextView
-        android:id="@+id/textWarranty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spaceTwo"
-        tools:text="Garantia" />
+        <!--<ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spaceOne"
+            tools:background="@drawable/image_notebook" />-->
 
-    <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textWarranty"
-        tools:text="Descripción del producto" />
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_extra_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carousel"
+            tools:text="$85.000" />
+
+        <TextView
+            android:id="@+id/textShipping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_price"
+            tools:text="Envío gratis" />
+
+        <TextView
+            android:id="@+id/textQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textShipping"
+            tools:text="Cantidad: 85 disponibles" />
+
+        <Space
+            android:id="@+id/spaceTwo"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textQuantity" />
+
+        <TextView
+            android:id="@+id/textWarranty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spaceTwo"
+            tools:text="Garantia" />
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textWarranty"
+            tools:text="Descripción del producto" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>
+

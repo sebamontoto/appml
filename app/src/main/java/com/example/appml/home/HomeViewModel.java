@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.appml.common.BaseViewModel;
+import com.example.appml.common.Command;
 import com.example.appml.common.networking.ServiceBuilder;
 import com.example.appml.home.model.Product;
 import com.example.appml.home.model.SearchResponse;
@@ -23,6 +24,8 @@ public class HomeViewModel extends BaseViewModel {
 
     private final String TAG = "HomeViewModel";
 
+    private Command command;
+
     private final HomeService homeService;
     private final MutableLiveData<List<Product>> searchState;
 
@@ -36,7 +39,26 @@ public class HomeViewModel extends BaseViewModel {
         return searchState;
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        command = null;
+    }
+
     public void fetchProducts(String product){
+        if(command == null){
+            command = new Command() {
+                @Override
+                public void execute() {
+                    fetchProductsInternals(product);
+                }
+            };
+        }
+
+        command.execute();
+    }
+
+    private void fetchProductsInternals(String product){
         setViewAsLoading();
 
         homeService.getProductsFromSearch(product)
@@ -46,14 +68,20 @@ public class HomeViewModel extends BaseViewModel {
                     @Override
                     public void onNext(Response value) {
                         Log.i(TAG, "onNext: " + value.body());
-                        searchState.postValue(((SearchResponse) value.body()).getResults());
-                        setViewAsLayout();
+
+                        if(value.isSuccessful()){
+                            searchState.postValue(((SearchResponse) value.body()).getResults());
+                            setViewAsLayout();
+                            command = null;
+                        } else {
+                            setViewAsError("Un error ha ocurrido");
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.i(TAG, "onError: " + e);
-
+                        setViewAsError("Revisá tu conexión a Internet");
                     }
 
                     @Override
@@ -61,5 +89,11 @@ public class HomeViewModel extends BaseViewModel {
                         Log.i(TAG, "onComplete: ");
                     }
                 });
+    }
+
+    public void retry() {
+        if(command != null){
+            command.execute();
+        }
     }
 }

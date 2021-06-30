@@ -15,7 +15,11 @@ public class BaseViewModel extends ViewModel {
     }
 
     protected void setViewAsError(){
-        viewState.postValue(ViewState. of(ViewState.State.ERROR));
+        viewState.postValue(ViewState.of(ViewState.State.ERROR));
+    }
+
+    protected void setViewAsError(String message){
+        viewState.postValue(ViewState.of(ViewState.State.ERROR, message));
     }
 
     protected void setViewAsLoading(){

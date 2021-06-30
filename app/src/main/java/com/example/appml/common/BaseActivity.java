@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.appml.R;
 
@@ -21,6 +23,8 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     private ViewGroup baseLayoutView;
     private ViewGroup baseLayoutError;
     private ViewGroup baseLayoutLoading;
+    private Button buttonRetry;
+    private TextView textError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,13 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
         baseLayoutError = findViewById(R.id.baseLayoutError);
         baseLayoutLoading = findViewById(R.id.baseLayoutLoading);
 
+
+        View errorView = LayoutInflater.from(this).inflate(R.layout.base_error_view, null);
+        buttonRetry = errorView.findViewById(R.id.buttonRetry);
+        textError = errorView.findViewById(R.id.textTitle);
+
         baseLayoutLoading.addView(LayoutInflater.from(this).inflate(R.layout.base_loading_view, null));
-        baseLayoutError.addView(LayoutInflater.from(this).inflate(R.layout.base_error_view, null));
+        baseLayoutError.addView(errorView);
 
         viewModel = createViewModel();
         viewModel.viewStateLiveData.observe(this, new Observer<ViewState>() {
@@ -41,6 +50,8 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
 
                 switch (viewState.getState()){
                     case ERROR:
+                        String message = viewState.getMessage();
+                        textError.setText(message);
                         baseLayoutView.setVisibility(View.GONE);
                         baseLayoutLoading.setVisibility(View.GONE);
                         baseLayoutError.setVisibility(View.VISIBLE);
@@ -62,8 +73,11 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
         });
 
         baseLayoutView.addView(getLayoutView());
+
+        buttonRetry.setOnClickListener(l -> retry());
     }
 
+    protected abstract void retry();
 
     protected abstract T createViewModel();
 
